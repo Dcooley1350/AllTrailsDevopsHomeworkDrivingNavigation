@@ -21,6 +21,8 @@ Deployed components include:
   * The driving directions service itself.
   * An echo server that sits in place of an actual backend application and assists in testing the reverse proxy.
 
+![Diagram of Driving Navigation Application](https://github.com/Dcooley1350/AllTrailsDebopsHomeworkDrivingNavigation/blob/d84d13be90520a7b9849c4c64565b7b700446423/drivingNavigationDiagram.png)
+
 REQUIREMENTS
 ------------
 
