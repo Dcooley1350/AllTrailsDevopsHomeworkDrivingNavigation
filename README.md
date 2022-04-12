@@ -42,6 +42,7 @@ git clone https://github.com/Dcooley1350/AllTrailsDebopsHomeworkDrivingNavigatio
 ```
 ./deployDrivingNavigation.sh
 ```
+**NOTE: The driving navigation service can take some time to boot up. NGINX will give you a 502 bad gateway response until the driving navigation service is ready**
 
 USING THE API
 -------------
@@ -97,6 +98,8 @@ Areas I struggled:
 * Creating the Kubernetes yaml for the Open Route Service deployment, I initially tried to use persistent volumes for data, as the Open Route Service documentation suggests. I am developing in a WSL, local Docker Desktop Kubernetes environment, which it turns out, does not yet support local persistent volumes. It took me a while to figure this out, and I spent a decent amount of time trying to make workarounds function before I just dropped it and used empty-dirs for my volumes. *Double Face-Palm*
 
 If I had more time:
+
+* I don't like that my instructions are just "NGINX will return a 502 until the driving directions service is ready AT SOME TIME IN THE FUTURE". That is annoying to me and the user. I would implement a health check that lets us know when the service is actually ready. I would also handle the service not being ready better in NGINX.
 
 * My nginx conf works. It works. Is it optimized? No. Does it contain some superflous stuff for the current application? Yes. I would have dialed this conf in to do exactly what I need it to do in this application.  
 
