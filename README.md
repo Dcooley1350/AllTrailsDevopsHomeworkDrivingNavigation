@@ -34,7 +34,7 @@ INSTALLATION
 ------------
 1. Clone repository:  
 ```
-git clone https://github.com/Dcooley1350/AllTrailsDebopsHomeworkDrivingNavigation.git
+git clone https://github.com/Dcooley1350/AllTrailsDevopsHomeworkDrivingNavigation.git
 ```
 
 2. Use terminal to navigate to root of repository  
