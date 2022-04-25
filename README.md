@@ -28,6 +28,7 @@ REQUIREMENTS
 
 * Adminstrative access to a Kubernetes cluster with at least one node.
 * kubectl CLI to interact with your cluster.
+* openssl command line tool to generate tls cert and key
 * git CLI to clone repository (alternatively, download repository from github)
 
 INSTALLATION
@@ -63,6 +64,11 @@ Test:
 ```
 curl 'http://localhost:30000/directions?start=8.681495,49.41461&end=8.687872,49.420318'
 ```
+* For https:
+```
+curl -k "https://localhost:30001/directions?start=8.681495,49.41461&end=8.687872,49.420318"
+```
+Note: The certificate used by the nginx reverse proxy is a self-signed cert. Curl will complain about this being a security threat unless we pass it the '-k' flag. The '-k' flag allows us to bypass this curl security feature.
 
 Expected response:
 ```
@@ -72,6 +78,10 @@ Expected response:
 * To test API endpoint from inside the cluster, you can deploy a test pod and send a request to the endpoint by issuing the command  
 ```
 kubectl run curl-test --image=curlimages/curl -n driving-navigation -i --tty --rm --restart=Never --command -- curl 'http://nginx-rp/directions?start=8.681495,49.41461&end=8.687872,49.420318'
+```
+* For https:
+```
+kubectl run curl-test --image=curlimages/curl -n driving-navigation -i --tty --rm --restart=Never --command -- curl -k 'https://nginx-rp/directions?start=8.681495,49.41461&end=8.687872,49.420318'
 ```
 
 This comand will start a curl pod inside the same namespace as the driving directions service. It will then use the name of the service that exposes the nginx reverse proxy as the host name to send a get request to the driving directions service. The pod will remain in the foreground of your terminal and return responses. The pod will clean itself up after it is done running.
